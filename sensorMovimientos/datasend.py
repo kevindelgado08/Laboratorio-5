@@ -8,3 +8,24 @@ baudrate = 9600  # Ajusta la velocidad de baudios según corresponda
 
 # Configuración del puerto serie
 ser = serial.Serial(serial_port, baudrate)
+
+datos = []
+encabezado = ["Prueba", "Eje x", "Eje y", "Eje z"]
+datos.append(encabezado)
+try:
+    while True:
+        # Ejemplo de línea recibida: "123 456 789"
+        x = ser.readline(32).decode('utf-8')
+        
+        y = x.split('\t')
+        
+        datos_float = [int(y[0]), float(y[1]), float(y[2]), float(y[3])]
+        
+        datos.append(datos_float)
+        
+        # Dividir la línea en partes separadas por espacios
+        # Verificar si se recibieron los tres valores esperados
+
+
+except KeyboardInterrupt:
+    print("\nInterrupción de Programa debido al usuario.")
