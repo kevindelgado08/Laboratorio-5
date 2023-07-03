@@ -29,3 +29,11 @@ try:
 
 except KeyboardInterrupt:
     print("\nInterrupción de Programa debido al usuario.")
+
+finally:
+    print(datos)
+    ser.close()
+    # Cerrar la conexión serial y desconectarse del broker MQTT al terminar
+    with open('Golpe.csv', mode='w', newline='') as archivo_csv:
+        writer = csv.writer(archivo_csv)
+        writer.writerows(datos)
